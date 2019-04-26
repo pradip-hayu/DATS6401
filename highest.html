@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#myNavbar"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Airline Analysis</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="index.html">Home</a></li>
+
+
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Delays<span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="delay01.html">Causes of Flight Delays</a></li>
+              <li><a href="delay02.html">Delays By Year & Month</a></li>
+              <li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+            </ul>
+          </li>
+
+
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Passenger <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="geo_region.html">Passenger by Geo Region</a></li>
+              <li>
+                <a href="domestic.html">Domestic Airline Passenger</a>
+              </li>
+              <li>
+                <a href="international.html"
+                >International Airline Passenger</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Safety <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="safety.html">Airline Safety</a></li>
+              <li><a href="safety_level.html">Safety level</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Airline Revenue <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="highest.html">Highest Revenue</a></li>
+              <li><a href="individual.html">Individual Revenue</a></li>
+            </ul>
+          </li>
+
+          <li><a href="CONCLUSIONS.html">Conclusions</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container text-center">
+      <div class="row content">
+        <div class="col-sm-12 text-left content">
+          <h1 class="text-center heading">
+            Analysis of Airlines Revenue
+          </h1>
+        </div>
+      </div>
+      <div class="row" style="margin-top:50px;">
+        <div class="col-md-12">
+          <div
+            id="chartContainerhighest"
+            style="height: 500px; max-width: 920px; margin: 0px auto;"
+          ></div>
+          <div style="margin-top: 40px;">
+            <p>
+              For the airlines revenue dataset, the revenues of 16 US airlines were selected for the years 2003 to 2016. Delta Airlines had the highest revenue (384.11 billions $) followed by United (351.99 Billions $) & American airlines (350.93 Billions $).
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+  <script>
+    window.onload = function() {
+      //17.40	18.61	20.66	22.49	22.83	23.70	19.90	22.15	23.96	24.83	25.76	27.14	41.08	40.42
+      //Better to construct options first and then pass it as a parameter
+      var options = {
+        animationEnabled: true,
+        // theme: "dark2",
+        title: {
+//          text: "Highest Revenue "
+        },
+        axisY2: {
+          prefix: "$",
+          lineThickness: 5,
+		  title: "Billions USD ($)",
+        },
+		
+		axisX: {
+			title: "Airlines",
+			interval:1,
+		},
+		
+        toolTip: {
+          shared: true
+        },
+        legend: {
+          // reversed: true,
+          verticalAlign: "center",
+          horizontalAlign: "right"
+        },
+		
+        data: [
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2003",
+            axisYType: "secondary",
+            color: "#7E8F74",
+            dataPoints: [
+              { y: 17.4, label: "American" },
+              { y: 7.33, label: "Continental" },
+              { y: 14.2, label: "Delta" },
+              { y: 9.18, label: "Northwest" },
+              { y: 13.4, label: "United" },
+              { y: 6.76, label: "US Airways" },
+              { y: 2.22, label: "America West" },
+              { y: 5.94, label: "Southwest" },
+              { y: 1.0, label: "jetBlue" },
+              { y: 0.92, label: "AirTran" },
+              { y: 0.59, label: "Frontier" },
+              { y: 0.0, label: "Virgin America" },
+              { y: 2.03, label: "Alaska" },
+              { y: 0.71, label: "Hawaiian" },
+              { y: 0.45, label: "Spirit" },
+              { y: 0.0, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2004",
+            axisYType: "secondary",
+            color: "#F0D6A7",
+            dataPoints: [
+              { y: 18.61, label: "American" },
+              { y: 9.85, label: "Continental" },
+              { y: 15.15, label: "Delta" },
+              { y: 11.27, label: "Northwest" },
+              { y: 15.7, label: "United" },
+              { y: 7.07, label: "US Airways" },
+              { y: 2.48, label: "America West" },
+              { y: 6.53, label: "Southwest" },
+              { y: 1.27, label: "jetBlue" },
+              { y: 1.04, label: "AirTran" },
+              { y: 0.79, label: "Frontier" },
+              { y: 0.0, label: "Virgin America" },
+              { y: 2.24, label: "Alaska" },
+              { y: 0.78, label: "Hawaiian" },
+              { y: 0.48, label: "Spirit" },
+              { y: 0.1, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2005",
+            axisYType: "secondary",
+            color: "#EBB88A",
+            dataPoints: [
+              { y: 20.66, label: "American" },
+              { y: 11.11, label: "Continental" },
+              { y: 16.11, label: "Delta" },
+              { y: 12.32, label: "Northwest" },
+              { y: 17.3, label: "United" },
+              { y: 7.21, label: "US Airways" },
+              { y: 3.4, label: "America West" },
+              { y: 7.58, label: "Southwest" },
+              { y: 1.7, label: "jetBlue" },
+              { y: 1.45, label: "AirTran" },
+              { y: 0.96, label: "Frontier" },
+              { y: 0.0, label: "Virgin America" },
+              { y: 2.42, label: "Alaska" },
+              { y: 0.82, label: "Hawaiian" },
+              { y: 0.48, label: "Spirit" },
+              { y: 0.13, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2006",
+            axisYType: "secondary",
+            color: "#cddc39",
+            dataPoints: [
+              { y: 22.49, label: "American" },
+              { y: 13.01, label: "Continental" },
+              { y: 17.34, label: "Delta" },
+              { y: 12.55, label: "Northwest" },
+              { y: 19.33, label: "United" },
+              { y: 11.85, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 9.09, label: "Southwest" },
+              { y: 2.36, label: "jetBlue" },
+              { y: 1.89, label: "AirTran" },
+              { y: 1.13, label: "Frontier" },
+              { y: 0.0, label: "Virgin America" },
+              { y: 2.69, label: "Alaska" },
+              { y: 0.88, label: "Hawaiian" },
+              { y: 0.54, label: "Spirit" },
+              { y: 0.23, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2007",
+            axisYType: "secondary",
+            color: "#795548",
+            dataPoints: [
+              { y: 22.83, label: "American" },
+              { y: 14.11, label: "Continental" },
+              { y: 19.24, label: "Delta" },
+              { y: 12.73, label: "Northwest" },
+              { y: 20.05, label: "United" },
+              { y: 12.05, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 9.86, label: "Southwest" },
+              { y: 2.84, label: "jetBlue" },
+              { y: 2.31, label: "AirTran" },
+              { y: 1.33, label: "Frontier" },
+              { y: 0.02, label: "Virgin America" },
+              { y: 3.08, label: "Alaska" },
+              { y: 0.98, label: "Hawaiian" },
+              { y: 0.76, label: "Spirit" },
+              { y: 0.34, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2008",
+            axisYType: "secondary",
+            color: "#f44336",
+            dataPoints: [
+              { y: 23.7, label: "American" },
+              { y: 15.03, label: "Continental" },
+              { y: 20.97, label: "Delta" },
+              { y: 14.1, label: "Northwest" },
+              { y: 20.24, label: "United" },
+              { y: 12.46, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 11.02, label: "Southwest" },
+              { y: 3.39, label: "jetBlue" },
+              { y: 2.55, label: "AirTran" },
+              { y: 1.37, label: "Frontier" },
+              { y: 0.37, label: "Virgin America" },
+              { y: 3.22, label: "Alaska" },
+              { y: 1.21, label: "Hawaiian" },
+              { y: 0.79, label: "Spirit" },
+              { y: 0.48, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2009",
+            axisYType: "secondary",
+            color: "#009688",
+            dataPoints: [
+              { y: 19.9, label: "American" },
+              { y: 12.36, label: "Continental" },
+              { y: 18.05, label: "Delta" },
+              { y: 10.86, label: "Northwest" },
+              { y: 16.36, label: "United" },
+              { y: 10.78, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 10.35, label: "Southwest" },
+              { y: 3.29, label: "jetBlue" },
+              { y: 2.34, label: "AirTran" },
+              { y: 1.11, label: "Frontier" },
+              { y: 0.55, label: "Virgin America" },
+              { y: 3.01, label: "Alaska" },
+              { y: 1.18, label: "Hawaiian" },
+              { y: 0.7, label: "Spirit" },
+              { y: 0.54, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2010",
+            axisYType: "secondary",
+            color: "#4caf50",
+            dataPoints: [
+              { y: 22.15, label: "American" },
+              { y: 14.01, label: "Continental" },
+              { y: 31.89, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 19.68, label: "United" },
+              { y: 12.2, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 12.1, label: "Southwest" },
+              { y: 3.78, label: "jetBlue" },
+              { y: 2.62, label: "AirTran" },
+              { y: 1.32, label: "Frontier" },
+              { y: 0.72, label: "Virgin America" },
+              { y: 3.43, label: "Alaska" },
+              { y: 1.31, label: "Hawaiian" },
+              { y: 0.78, label: "Spirit" },
+              { y: 0.64, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2011",
+            axisYType: "secondary",
+            color: "#673ab7",
+            dataPoints: [
+              { y: 23.96, label: "American" },
+              { y: 16.17, label: "Continental" },
+              { y: 35.32, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 21.16, label: "United" },
+              { y: 13.34, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 13.65, label: "Southwest" },
+              { y: 4.51, label: "jetBlue" },
+              { y: 2.94, label: "AirTran" },
+              { y: 1.66, label: "Frontier" },
+              { y: 1.04, label: "Virgin America" },
+              { y: 4.31, label: "Alaska" },
+              { y: 1.65, label: "Hawaiian" },
+              { y: 1.07, label: "Spirit" },
+              { y: 0.75, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2012",
+            axisYType: "secondary",
+            color: "#ff9800",
+            dataPoints: [
+              { y: 24.83, label: "American" },
+              { y: 0.0, label: "Continental" },
+              { y: 36.92, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 37.16, label: "United" },
+              { y: 14.12, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 17.09, label: "Southwest" },
+              { y: 4.98, label: "jetBlue" },
+              { y: 0.0, label: "AirTran" },
+              { y: 1.43, label: "Frontier" },
+              { y: 1.33, label: "Virgin America" },
+              { y: 4.65, label: "Alaska" },
+              { y: 1.96, label: "Hawaiian" },
+              { y: 1.32, label: "Spirit" },
+              { y: 0.87, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2013",
+            axisYType: "secondary",
+            color: "#9c27b0",
+            dataPoints: [
+              { y: 25.76, label: "American" },
+              { y: 0.0, label: "Continental" },
+              { y: 37.82, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 38.29, label: "United" },
+              { y: 14.94, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 17.7, label: "Southwest" },
+              { y: 5.44, label: "jetBlue" },
+              { y: 0.0, label: "AirTran" },
+              { y: 1.35, label: "Frontier" },
+              { y: 1.42, label: "Virgin America" },
+              { y: 5.15, label: "Alaska" },
+              { y: 2.16, label: "Hawaiian" },
+              { y: 1.65, label: "Spirit" },
+              { y: 0.96, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2014",
+            axisYType: "secondary",
+            color: "#9ed8d8",
+
+            dataPoints: [
+              { y: 27.14, label: "American" },
+              { y: 0.0, label: "Continental" },
+              { y: 40.43, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 38.9, label: "United" },
+              { y: 15.75, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 18.61, label: "Southwest" },
+              { y: 5.82, label: "jetBlue" },
+              { y: 0.0, label: "AirTran" },
+              { y: 1.57, label: "Frontier" },
+              { y: 1.49, label: "Virgin America" },
+              { y: 5.36, label: "Alaska" },
+              { y: 2.31, label: "Hawaiian" },
+              { y: 1.93, label: "Spirit" },
+              { y: 1.1, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2015",
+            axisYType: "secondary",
+            color: "#a3b4c3",
+            dataPoints: [
+              { y: 41.08, label: "American" },
+              { y: 0.0, label: "Continental" },
+              { y: 40.82, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 37.86, label: "United" },
+              { y: 0.0, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 19.82, label: "Southwest" },
+              { y: 6.42, label: "jetBlue" },
+              { y: 0.0, label: "AirTran" },
+              { y: 1.6, label: "Frontier" },
+              { y: 1.53, label: "Virgin America" },
+              { y: 5.59, label: "Alaska" },
+              { y: 2.31, label: "Hawaiian" },
+              { y: 2.14, label: "Spirit" },
+              { y: 1.22, label: "Allegiant" }
+            ]
+          },
+          {
+            type: "stackedBar",
+            showInLegend: true,
+            name: "2016",
+            axisYType: "secondary",
+            color: "#DB9079",
+            indexLabel: "$#total",
+            dataPoints: [
+              { y: 40.42, label: "American" },
+              { y: 0.0, label: "Continental" },
+              { y: 39.85, label: "Delta" },
+              { y: 0.0, label: "Northwest" },
+              { y: 36.56, label: "United" },
+              { y: 0.0, label: "US Airways" },
+              { y: 0.0, label: "America West" },
+              { y: 20.43, label: "Southwest" },
+              { y: 6.63, label: "jetBlue" },
+              { y: 0.0, label: "AirTran" },
+              { y: 1.71, label: "Frontier" },
+              { y: 1.66, label: "Virgin America" },
+              { y: 5.83, label: "Alaska" },
+              { y: 2.44, label: "Hawaiian" },
+              { y: 2.32, label: "Spirit" },
+              { y: 1.32, label: "Allegiant" }
+            ]
+          }
+        ]
+      };
+      $("#chartContainerhighest").CanvasJSChart(options);
+    };
+  </script>
+</html>

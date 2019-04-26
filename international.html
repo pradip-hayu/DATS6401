@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#myNavbar"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Airline Analysis</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="index.html">Home</a></li>
+
+
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Delays<span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="delay01.html">Causes of Flight Delays</a></li>
+              <li><a href="delay02.html">Delays By Year & Month</a></li>
+              <li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+            </ul>
+          </li>
+
+
+
+          <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Passenger <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="geo_region.html">Passenger by Geo Region</a></li>
+              <li>
+                <a href="domestic.html">Domestic Airline Passenger</a>
+              </li>
+              <li>
+                <a href="international.html"
+                >International Airline Passenger</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Safety <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="safety.html">Airline Safety</a></li>
+              <li><a href="safety_level.html">Safety level</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Airline Revenue <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="highest.html">Highest Revenue</a></li>
+              <li><a href="individual.html">Individual Revenue</a></li>
+            </ul>
+          </li>
+
+          <li><a href="CONCLUSIONS.html">Conclusions</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="container text-center">
+      <div class="row content">
+        <div class="col-sm-12 text-left content">
+          <h1 class="text-center heading">
+            International Airline Passenger
+          </h1>
+          <div
+            id="chartContainer"
+            style="height: 370px; max-width: 920px; margin: 0px auto;"
+          ></div>
+          <div style="margin-top: 50px;">
+            <p>
+              United Airlines is also the most popular international airline in terms of total passengers count. United Airlines is used the most by travelers to and from San Francisco International Airport.
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+  <script>
+    window.onload = function() {
+      var options = {
+        animationEnabled: true,
+        title: {
+//          text: "International Airlines No of passengers"
+        },
+        axisY: {
+          title: "No of passengers",
+          //		suffix: "%",
+          includeZero: false
+        },
+        axisX: {
+          title: "International Airlines",
+		  interval: 1,
+		  labelAngle: -60,
+        },
+        data: [
+          {
+            type: "column",
+            yValueFormatString: "#,##0.0#" % "",
+            dataPoints: [
+              //           { label : "Air China", y: 2375014},
+              { label: "Air India Limited", y: 382209 },
+              { label: "All Nippon Airways", y: 2099131 },
+              { label: "Asiana Airlines", y: 2053790 },
+              { label: "Cathay Pacific", y: 5812911 },
+              { label: "China Airlines", y: 3211679 },
+              { label: "China Eastern", y: 987310 },
+              { label: "China Southern", y: 656781 },
+              { label: "Delta Air Lines", y: 498241 },
+              { label: "EVA Airways", y: 4679179 },
+              { label: "Evergreen International Airlines", y: 4 },
+              { label: "Hong Kong Airlines Limited", y: 89993 },
+              { label: "Japan Airlines", y: 2085936 },
+              { label: "Jet Airways", y: 68485 },
+              { label: "Korean Air Lines", y: 2263228 },
+              { label: "Northwest Airlines", y: 714761 },
+              { label: "Philippine Airlines", y: 3405321 },
+              { label: "Singapore Airlines", y: 4696869 },
+              { label: "Swissport USA", y: 216 },
+              { label: "United Airlines", y: 9666133 },
+              { label: "United Airlines - Pre 07/01/2013", y: 12816172 },
+              { label: "Air New Zealand", y: 2482176 },
+              { label: "Air Pacific Limited dba Fiji Airways", y: 95303 },
+              { label: "French Bee", y: 39986 },
+              { label: "Qantas Airways", y: 1194732 },
+              { label: "United Airlines", y: 1139180 },
+              { label: "United Airlines - Pre 07/01/2013", y: 1633934 },
+              { label: "ATA Airlines", y: 991 },
+              { label: "Air Canada", y: 9585754 },
+              { label: "Alaska Airlines", y: 495206 },
+              { label: "Miami Air International", y: 28 },
+              { label: "United Airlines", y: 3179340 },
+              { label: "United Airlines - Pre 07/01/2013", y: 4411845 },
+              { label: "Virgin America", y: 40185 },
+              { label: "WestJet Airlines", y: 878408 },
+              { label: "COPA Airlines, Inc.", y: 523122 },
+              { label: "Swissport USA", y: 468 },
+              { label: "TACA", y: 1701755 },
+              { label: "United Airlines", y: 62 },
+              { label: "Aer Lingus", y: 867565 },
+              { label: "Air Berlin", y: 235155 },
+              { label: "Air France", y: 3987899 },
+              { label: "BelAir Airlines", y: 9138 },
+              { label: "British Airways", y: 5783031 },
+              { label: "Finnair", y: 62340 },
+              { label: "French Bee", y: 48286 },
+              { label: "Iberia", y: 43043 },
+              { label: "Icelandair", y: 55994 },
+              { label: "Icelandair EHF", y: 47880 },
+              { label: "KLM Royal Dutch Airlines", y: 3180888 },
+              { label: "Lufthansa German Airlines", y: 6382505 },
+              { label: "Pacific Aviation", y: 320 },
+              { label: "SAS Airlines", y: 841435 },
+              { label: "Servisair", y: 32 },
+              { label: "Swiss International", y: 1389873 },
+              { label: "Swissport USA", y: 2721 },
+              { label: "Thomas Cook Airlines", y: 62946 },
+              { label: "Turkish Airlines", y: 785513 },
+              { label: "United Airlines", y: 4330932 },
+              { label: "United Airlines - Pre 07/01/2013", y: 5072061 },
+              { label: "Virgin Atlantic", y: 3365851 },
+              { label: "WOW Air", y: 359809 },
+              { label: "World Airways", y: 514 },
+              { label: "XL Airways France", y: 138126 },
+              { label: "ABC Aerolineas S.A. de C.V. dba Interjet", y: 54694 },
+              { label: "Aeromexico", y: 1825488 },
+              { label: "Alaska Airlines", y: 2527517 },
+              { label: "Mexicana Airlines", y: 991232 },
+              { label: "Sun Country Airlines", y: 15200 },
+              { label: "United Airlines", y: 3052474 },
+              { label: "United Airlines - Pre 07/01/2013", y: 2108812 },
+              { label: "Virgin America", y: 811116 },
+              { label: "Volaris Airlines", y: 229845 },
+              { label: "Emirates", y: 2458528 },
+              { label: "Etihad Airways", y: 395594 },
+              { label: "United Airlines", y: 356696 },
+              { label: "LAN Peru", y: 250741 },
+              { label: "United Airlines", y: 81 }
+            ]
+          }
+        ]
+      };
+      $("#chartContainer").CanvasJSChart(options);
+    };
+  </script>
+</html>

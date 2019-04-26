@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#myNavbar"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Airline Analysis</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="index.html">Home</a></li>
+
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Delays<span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="delay01.html">Causes of Flight Delays</a></li>
+              <li><a href="delay02.html">Delays By Year & Month</a></li>
+              <li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+            </ul>
+          </li>
+
+
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Passenger <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="geo_region.html">Passenger by Geo Region</a></li>
+              <li>
+                <a href="domestic.html">Domestic Airline Passenger</a>
+              </li>
+              <li>
+                <a href="international.html"
+                >International Airline Passenger</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Safety <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="safety.html">Airline Safety</a></li>
+              <li><a href="safety_level.html">Safety level</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Airline Revenue <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="highest.html">Highest Revenue</a></li>
+              <li><a href="individual.html">Individual Revenue</a></li>
+            </ul>
+          </li>
+
+          <li><a href="CONCLUSIONS.html">Conclusions</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container">
+      <div class="row" style="margin-top:50px;">
+        <div class="col-sm-3">
+          <h3>Individual Revenue (2003-2016)</h3>
+          <select id="revenue">
+            <option value="American">American</option>
+            <option value="Continental">Continental</option>
+            <option value="Delta">Delta</option>
+            <option value="Northwest">Northwest</option>
+            <option value="United">United</option>
+            <option value="US Airways">US Airways</option>
+            <option value="America West">America West</option>
+            <option value="Southwest">Southwest</option>
+            <option value="jetBlue">jetBlue</option>
+            <option value="AirTran">AirTran</option>
+            <option value="Frontier">Frontier</option>
+            <option value="Virgin America">Virgin America</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Hawaiian">Hawaiian</option>
+            <option value="Spirit">Spirit</option>
+            <option value="Allegiant">Allegiant</option>
+          </select>
+        </div>
+        <div class="col-md-9">
+          <div
+            id="chartContainer"
+            style="height: 370px; max-width: 920px; margin: 0px auto;"
+          >
+          </div>
+          <div style="margin-top: 50px;">
+            <ul>
+              <li>
+                American: American airlines had the highest revenue of 41.08 billion dollars in 2015. In 2009, there was a sudden decrease in its revenue, but it picked up progressively. In 2015, there was a massive increase in its revenue from 27.14 to 41.08 billion dollars.
+              </li>
+              <li>Continental: Continental airlines had the highest revenue of 16.17 billion dollars in 2011. Interesting fact: it merged with the parent company of United Airlines in 2010. </li>
+              <li>Delta: The revenue of delta airlines was increasing up until 2008. Its revenue decreased in 2009 from 20.97 to 18.05 billion dollars. In 2010, it picked up its revenue again with an amount of 31.89 billion. The revenue increased gradually afterwards with the highest revenue of 40.82 billion in 2015.</li>
+              <li>NorthWest: NorthWest had the highest revenue of 14.10 billion in 2008. It ceased its operation in 2010 after merging with Delta Airlines.</li>
+              <li>United: United had the highest revenue of 38.90 billion in 2014. </li>
+              <li>US Airways: US Airways had the highest revenue of 15.75 billion in 2014. It ceased its operation in 2015 after merging with American Airlines.</li>
+              <li>American West: American west had the highest revenue of 3.40 billion in 2005. It ceased its operations in 2005 and took the name of US Airways. </li>
+              <li>SouthWest: Mostly, there has been a consistent increase in SouthWest’s revenue. The highest revenue was 20.43 billion in 2016.</li>
+              <li>jetBlue:  The revenue of jetBlue airlines has been increasing consistently from 2003 to 2016. The highest revenue was 6.63 billion in 2016.</li>
+              <li>AirTran: AirTran had the highest revenue of 2.94 billion in 2011. It ceased its operations in 2014 after it was acquired by SouthWest Airlines.</li>
+              <li>Frontier: Frontier had the highest revenue of 1.71 billion in 2016.</li>
+              <li>Virgin America: Virgin America commenced its operations in 2007. It had the highest revenue of 1.66 billion in 2016.</li>
+              <li>Alaska:  Alaska had the highest revenue of 5.83 billion in 2016.</li>
+              <li>Hawaiian: Hawaiian had the highest revenue of 2.44 billion in 2016.</li>
+              <li>Spirit:  Spirit had the highest revenue of 2.32 billion in 2016.</li>
+              <li>Allegiant:  Allegiant had the highest revenue of 1.32 billion in 2016.</li>
+
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+  <script>
+
+      window.onload = function () {
+
+          var options = {
+              animationEnabled: true,
+              // theme: "dark1",
+              title:{
+                  text: "Revenue of American, 2003-2016"
+              },
+              axisY :{
+				  title: "Revenue (Billions US $)",
+                  includeZero: false,
+                  prefix: "$",
+                  lineThickness: 0
+              },
+              toolTip: {
+                  shared: true
+              },
+              legend: {
+                  fontSize: 13
+              },
+              data: [{
+                  type: "splineArea",
+                  showInLegend: true,
+                  name: "American",
+                  //yValueFormatString: "$#,##0",
+                  ///xValueFormatString: "YYYY",
+                  dataPoints: [
+                      { x: new Date(2003,0), y:  17.40},
+                      { x: new Date(2004,0), y:  18.61},
+                      { x: new Date(2005,0), y:  20.66},
+                      { x: new Date(2006,0), y:  22.49},
+                      { x: new Date(2007,0), y:  22.83},
+                      { x: new Date(2008,0), y:  23.70},
+                      { x: new Date(2009,0), y:  19.90},
+                      { x: new Date(2010,0), y:  22.15},
+                      { x: new Date(2011,0), y:  23.96},
+                      { x: new Date(2012,0), y:  24.83},
+                      { x: new Date(2013,0), y:  25.76},
+                      { x: new Date(2014,0), y:  27.14},
+                      { x: new Date(2015,0), y:  41.08},
+                      { x: new Date(2016,0), y: 40.42 }
+                  ]
+              }
+              ]
+          };
+          $("#chartContainer").CanvasJSChart(options);
+          $("#revenue").change(function(){
+              // alert( this.value );
+              if(this.value == 'Continental') {
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Continental, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Continental",
+                          // //yValueFormatString: "$#,##0",
+                          // ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  7.33},
+                              { x: new Date(2004,0), y:  9.85},
+                              { x: new Date(2005,0), y:  11.11},
+                              { x: new Date(2006,0), y:  13.01},
+                              { x: new Date(2007,0), y:  14.11},
+                              { x: new Date(2008,0), y:  15.03},
+                              { x: new Date(2009,0), y:  12.36},
+                              { x: new Date(2010,0), y:  14.01},
+                              { x: new Date(2011,0), y:  16.17},
+                              { x: new Date(2012,0), y:  0.00},
+                              { x: new Date(2013,0), y:  0.00},
+                              { x: new Date(2014,0), y:  0.00},
+                              { x: new Date(2015,0), y:  0.00},
+                              { x: new Date(2016,0), y: 0.00 }
+                          ]
+                      }
+                      ]
+                  };
+
+              }else if (this.value == 'American'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of American, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "American",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  17.40},
+                              { x: new Date(2004,0), y:  18.61},
+                              { x: new Date(2005,0), y:  20.66},
+                              { x: new Date(2006,0), y:  22.49},
+                              { x: new Date(2007,0), y:  22.83},
+                              { x: new Date(2008,0), y:  23.70},
+                              { x: new Date(2009,0), y:  19.90},
+                              { x: new Date(2010,0), y:  22.15},
+                              { x: new Date(2011,0), y:  23.96},
+                              { x: new Date(2012,0), y:  24.83},
+                              { x: new Date(2013,0), y:  25.76},
+                              { x: new Date(2014,0), y:  27.14},
+                              { x: new Date(2015,0), y:  41.08},
+                              { x: new Date(2016,0), y: 40.42 }
+                          ]
+                      },]};
+              }else if (this.value == 'Delta'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Delta, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Delta",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  14.20},
+                              { x: new Date(2004,0), y:  15.15},
+                              { x: new Date(2005,0), y:  16.11},
+                              { x: new Date(2006,0), y:  17.34},
+                              { x: new Date(2007,0), y:  19.24},
+                              { x: new Date(2008,0), y:  20.97},
+                              { x: new Date(2009,0), y:  18.05},
+                              { x: new Date(2010,0), y:  31.89},
+                              { x: new Date(2011,0), y:  35.32},
+                              { x: new Date(2012,0), y:  36.92},
+                              { x: new Date(2013,0), y:  37.82},
+                              { x: new Date(2014,0), y:  40.43},
+                              { x: new Date(2015,0), y:  40.82},
+                              { x: new Date(2016,0), y: 39.85 }
+                          ]
+                      },]};
+              }else if (this.value == 'Northwest'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Northwest, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Northwest",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  9.18},
+                              { x: new Date(2004,0), y:  11.27},
+                              { x: new Date(2005,0), y:  12.32},
+                              { x: new Date(2006,0), y:  12.55},
+                              { x: new Date(2007,0), y:  12.73},
+                              { x: new Date(2008,0), y:  14.10},
+                              { x: new Date(2009,0), y:  10.86},
+                              { x: new Date(2010,0), y:  0.00},
+                              { x: new Date(2011,0), y:  0.00},
+                              { x: new Date(2012,0), y:  0.00},
+                              { x: new Date(2013,0), y:  0.00},
+                              { x: new Date(2014,0), y:  0.00},
+                              { x: new Date(2015,0), y:  0.00},
+                              { x: new Date(2016,0), y: 0.00 }
+                          ]
+                      },]};
+              }else if (this.value == 'United'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of United, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "United",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  13.40},
+                              { x: new Date(2004,0), y:  15.70},
+                              { x: new Date(2005,0), y:  17.30},
+                              { x: new Date(2006,0), y:  19.33},
+                              { x: new Date(2007,0), y:  20.05},
+                              { x: new Date(2008,0), y:  20.24},
+                              { x: new Date(2009,0), y:  16.36},
+                              { x: new Date(2010,0), y:  19.68},
+                              { x: new Date(2011,0), y:  21.16},
+                              { x: new Date(2012,0), y:  37.16},
+                              { x: new Date(2013,0), y:  38.29},
+                              { x: new Date(2014,0), y:  38.90},
+                              { x: new Date(2015,0), y:  37.86},
+                              { x: new Date(2016,0), y: 36.56 }
+                          ]
+                      },]};
+              }else if (this.value == 'US Airways'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of US Airways, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "US Airways",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  6.76},
+                              { x: new Date(2004,0), y:  7.07},
+                              { x: new Date(2005,0), y:  7.21},
+                              { x: new Date(2006,0), y:  11.85},
+                              { x: new Date(2007,0), y:  12.05},
+                              { x: new Date(2008,0), y:  12.46},
+                              { x: new Date(2009,0), y:  10.78},
+                              { x: new Date(2010,0), y:  12.20},
+                              { x: new Date(2011,0), y:  13.34},
+                              { x: new Date(2012,0), y:  14.12},
+                              { x: new Date(2013,0), y:  14.94},
+                              { x: new Date(2014,0), y:  15.75},
+                              { x: new Date(2015,0), y:  0.00},
+                              { x: new Date(2016,0), y: 0.00 }
+                          ]
+                      },]};
+              }else if (this.value == 'America West'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of America West, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "America West",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  2.22},
+                              { x: new Date(2004,0), y:  2.48},
+                              { x: new Date(2005,0), y:  3.40},
+                              { x: new Date(2006,0), y:  0.00},
+                              { x: new Date(2007,0), y:  0.00},
+                              { x: new Date(2008,0), y:  0.00},
+                              { x: new Date(2009,0), y:  0.00},
+                              { x: new Date(2010,0), y:  0.00},
+                              { x: new Date(2011,0), y:  0.00},
+                              { x: new Date(2012,0), y:  0.00},
+                              { x: new Date(2013,0), y:  0.00},
+                              { x: new Date(2014,0), y:  0.00},
+                              { x: new Date(2015,0), y:  0.00},
+                              { x: new Date(2016,0), y: 0.00 }
+                          ]
+                      },]};
+              }
+              else if (this.value == 'Southwest'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Southwest, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Southwest",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  5.94},
+                              { x: new Date(2004,0), y:  6.53},
+                              { x: new Date(2005,0), y:  7.58},
+                              { x: new Date(2006,0), y:  9.09},
+                              { x: new Date(2007,0), y:  9.86},
+                              { x: new Date(2008,0), y:  11.02},
+                              { x: new Date(2009,0), y:  10.35},
+                              { x: new Date(2010,0), y:  12.10},
+                              { x: new Date(2011,0), y:  13.65},
+                              { x: new Date(2012,0), y:  17.09},
+                              { x: new Date(2013,0), y:  17.70},
+                              { x: new Date(2014,0), y:  18.61},
+                              { x: new Date(2015,0), y:  19.82},
+                              { x: new Date(2016,0), y: 20.43 }
+                          ]
+                      },]};
+              }
+              else if (this.value == 'jetBlue'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of jetBlue, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "jetBlue",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  1.00},
+                              { x: new Date(2004,0), y:  1.27},
+                              { x: new Date(2005,0), y:  1.70},
+                              { x: new Date(2006,0), y:  2.36},
+                              { x: new Date(2007,0), y:  2.84},
+                              { x: new Date(2008,0), y:  3.39},
+                              { x: new Date(2009,0), y:  3.29},
+                              { x: new Date(2010,0), y:  3.78},
+                              { x: new Date(2011,0), y:  4.51},
+                              { x: new Date(2012,0), y:  4.98},
+                              { x: new Date(2013,0), y:  5.44},
+                              { x: new Date(2014,0), y:  5.82},
+                              { x: new Date(2015,0), y:  6.42},
+                              { x: new Date(2016,0), y: 6.63 }
+                          ]
+                      },]};
+              } else if (this.value == 'AirTran'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of AirTran, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "AirTran",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  0.92},
+                              { x: new Date(2004,0), y:  1.04},
+                              { x: new Date(2005,0), y:  1.45},
+                              { x: new Date(2006,0), y:  1.89},
+                              { x: new Date(2007,0), y:  2.31},
+                              { x: new Date(2008,0), y:  2.55},
+                              { x: new Date(2009,0), y:  2.34},
+                              { x: new Date(2010,0), y:  2.62},
+                              { x: new Date(2011,0), y:  2.94},
+                              { x: new Date(2012,0), y:  0.00},
+                              { x: new Date(2013,0), y:  0.00},
+                              { x: new Date(2014,0), y:  0.00},
+                              { x: new Date(2015,0), y:  0.00},
+                              { x: new Date(2016,0), y: 0.00 }
+                          ]
+                      },]};
+              }else if (this.value == 'Frontier'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Frontier, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Frontier",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  0.59},
+                              { x: new Date(2004,0), y:  0.79},
+                              { x: new Date(2005,0), y:  0.96},
+                              { x: new Date(2006,0), y:  1.13},
+                              { x: new Date(2007,0), y:  1.33},
+                              { x: new Date(2008,0), y:  1.37},
+                              { x: new Date(2009,0), y:  1.11},
+                              { x: new Date(2010,0), y:  1.32},
+                              { x: new Date(2011,0), y:  1.66},
+                              { x: new Date(2012,0), y:  1.43},
+                              { x: new Date(2013,0), y:  1.35},
+                              { x: new Date(2014,0), y:  1.57},
+                              { x: new Date(2015,0), y:  1.60},
+                              { x: new Date(2016,0), y: 1.71 }
+                          ]
+                      },]};
+              }else if (this.value == 'Virgin America'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Virgin America, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Virgin America",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  0.00},
+                              { x: new Date(2004,0), y:  0.00},
+                              { x: new Date(2005,0), y:  0.00},
+                              { x: new Date(2006,0), y:  0.00},
+                              { x: new Date(2007,0), y:  0.02},
+                              { x: new Date(2008,0), y:  0.37},
+                              { x: new Date(2009,0), y:  0.55},
+                              { x: new Date(2010,0), y:  0.72},
+                              { x: new Date(2011,0), y:  1.04},
+                              { x: new Date(2012,0), y:  1.33},
+                              { x: new Date(2013,0), y:  1.42},
+                              { x: new Date(2014,0), y:  1.49},
+                              { x: new Date(2015,0), y:  1.53},
+                              { x: new Date(2016,0), y: 1.66 }
+                          ]
+                      },]};
+              }else if (this.value == 'Alaska'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Alaska, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Alaska",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  2.03},
+                              { x: new Date(2004,0), y:  2.24},
+                              { x: new Date(2005,0), y:  2.42},
+                              { x: new Date(2006,0), y:  2.69},
+                              { x: new Date(2007,0), y:  3.08},
+                              { x: new Date(2008,0), y:  3.22},
+                              { x: new Date(2009,0), y:  3.01},
+                              { x: new Date(2010,0), y:  3.43},
+                              { x: new Date(2011,0), y:  4.31},
+                              { x: new Date(2012,0), y:  4.65},
+                              { x: new Date(2013,0), y:  5.15},
+                              { x: new Date(2014,0), y:  5.36},
+                              { x: new Date(2015,0), y:  5.59},
+                              { x: new Date(2016,0), y: 5.83 }
+                          ]
+                      },]};
+              }
+              else if (this.value == 'Hawaiian'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Hawaiian, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Hawaiian",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  0.71},
+                              { x: new Date(2004,0), y:  0.78},
+                              { x: new Date(2005,0), y:  0.82},
+                              { x: new Date(2006,0), y:  0.88},
+                              { x: new Date(2007,0), y:  0.98},
+                              { x: new Date(2008,0), y:  1.21},
+                              { x: new Date(2009,0), y:  1.18},
+                              { x: new Date(2010,0), y:  1.31},
+                              { x: new Date(2011,0), y:  1.65},
+                              { x: new Date(2012,0), y:  1.96},
+                              { x: new Date(2013,0), y:  2.16},
+                              { x: new Date(2014,0), y:  2.31},
+                              { x: new Date(2015,0), y:  2.31},
+                              { x: new Date(2016,0), y: 2.44 }
+                          ]
+                      },]};
+              }
+              else if (this.value == 'Spirit'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Spirit, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Spirit",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  0.45},
+                              { x: new Date(2004,0), y:  0.48},
+                              { x: new Date(2005,0), y:  0.48},
+                              { x: new Date(2006,0), y:  0.54},
+                              { x: new Date(2007,0), y:  0.76},
+                              { x: new Date(2008,0), y:  0.79},
+                              { x: new Date(2009,0), y:  0.70},
+                              { x: new Date(2010,0), y:  0.78},
+                              { x: new Date(2011,0), y:  1.07},
+                              { x: new Date(2012,0), y:  1.32},
+                              { x: new Date(2013,0), y:  1.65},
+                              { x: new Date(2014,0), y:  1.93},
+                              { x: new Date(2015,0), y:  2.14},
+                              { x: new Date(2016,0), y: 2.32 }
+                          ]
+                      },]};
+              }else if (this.value == 'Allegiant'){
+                  var options = {
+                      animationEnabled: true,
+                      // theme: "dark1",
+                      title:{
+                          text: "Revenue of Allegiant, 2003-2016"
+                      },
+                      axisY :{
+						  title: "Revenue (Billions US $)",
+                          // includeZero: false,
+                          prefix: "$",
+                          lineThickness: 0
+                      },
+                      toolTip: {
+                          shared: true
+                      },
+                      legend: {
+                          fontSize: 13
+                      },
+                      data: [{
+                          type: "splineArea",
+                          showInLegend: true,
+                          name: "Allegiant",
+                          //yValueFormatString: "$#,##0",
+                          ///xValueFormatString: "YYYY",
+                          dataPoints: [
+                              { x: new Date(2003,0), y:  0.00},
+                              { x: new Date(2004,0), y:  0.10},
+                              { x: new Date(2005,0), y:  0.13},
+                              { x: new Date(2006,0), y:  0.23},
+                              { x: new Date(2007,0), y:  0.34},
+                              { x: new Date(2008,0), y:  0.48},
+                              { x: new Date(2009,0), y:  0.54},
+                              { x: new Date(2010,0), y:  0.64},
+                              { x: new Date(2011,0), y:  0.75},
+                              { x: new Date(2012,0), y:  0.87},
+                              { x: new Date(2013,0), y:  0.96},
+                              { x: new Date(2014,0), y:  1.10},
+                              { x: new Date(2015,0), y:  1.22},
+                              { x: new Date(2016,0), y: 1.32 }
+                          ]
+                      },]};
+              }
+
+
+
+
+              $("#chartContainer").CanvasJSChart(options);
+          });
+
+      }
+  </script>
+</html>

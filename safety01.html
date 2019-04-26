@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+	/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script type = "text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type = "text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type = "text/javascript">
+
+        //load the google charts
+        google.charts.load('current' ,{'packages' : ['corechart']});
+
+        //load the Callback function that runs when page loads
+        google.charts.setOnLoadCallback(drawAllSheets);
+
+        function drawAllSheets() {
+            drawSheetName('2000-2014','SELECT H,I,J,K',
+                ScatterSafetyResponseHandler);
+        } //drawAllSheets
+
+
+        function drawSheetName(sheetName, query, responseHandler) {
+            var queryString = encodeURIComponent(query);
+            var query = new google.visualization.Query(
+
+                'https://docs.google.com/spreadsheets/d/1hd67sVtDAjJVcOS2e_kxWP2Pm903kTMVOjbyCjgaV7U/gviz/tq?sheet='
+
+                + sheetName + '&headers=1&tq=' + queryString);
+            query.send(responseHandler);
+        } //drawSheetName
+
+        function checkError(response) {
+            if(response.isError()) {
+                alert('Error in query: '+ response.getMessage() +
+                    ' ' + response.getDetailedMessage());
+                return;
+            }
+        }
+        //Function end
+
+
+        //Scatterplot to represent incidents, fatal accidents and fatalities of 56 airlines
+
+        function ScatterSafetyResponseHandler(response) {
+            checkError(response);
+            var data = response.getDataTable();
+            var options = {
+                hAxis: {title: 'Airlines'},
+                vAxis: {title: 'Number of incidents, fatal accidents & fatalities'},
+                colors: ['blue','orange', 'red'],
+                legend: 'none'
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('ScatterSafety_div'));
+            chart.draw(data, options);
+
+        }// Function end
+
+
+
+
+	</script>
+	<link rel="stylesheet" href="styles.css" />
+	<style></style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button
+					type="button"
+					class="navbar-toggle"
+					data-toggle="collapse"
+					data-target="#myNavbar"
+			>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Airline Analysis</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li class=""><a href="index.html">Home</a></li>
+
+
+				<li class="dropdown ">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Delays<span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="delay01.html">Causes of Flight Delays</a></li>
+						<li><a href="delay02.html">Delays By Year & Month</a></li>
+						<li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+					</ul>
+				</li>
+
+
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Passenger <span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="geo_region.html">Passenger by Geo Region</a></li>
+						<li>
+							<a href="domestic.html">Domestic Airline Passenger</a>
+						</li>
+						<li>
+							<a href="international.html"
+							>International Airline Passenger</a
+							>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Safety <span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="safety.html">Airline Safety</a></li>
+						<li><a href="safety_level.html">Safety level</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Airline Revenue <span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="highest.html">Highest Revenue</a></li>
+						<li><a href="individual.html">Individual Revenue</a></li>
+					</ul>
+				</li>
+
+				<li><a href="CONCLUSIONS.html">Conclusions</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container text-center">
+
+	<div class="row content">
+		<div class="col-sm-12 text-left content">
+			<h1 class="text-center heading" style="margin-top: 100px;">
+				Incidents, Fatal Accidents & Fatalities Count of 56 Airlines
+			</h1>
+			<div id ="ScatterSafety_div"  style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+			<div style="margin-top: 150px;">
+				<p>
+					From these scatter-plots, we can clearly see that Delta had the highest number of incidents (24), American airlines had the highest number of fatal incidents (3), and Malaysia airlines had the highest number (537) of fatalities.
+
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+	
+
+		
+		
+	
+	
+	
+	

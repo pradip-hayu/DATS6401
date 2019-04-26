@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .listing td{
+            border:none;
+        }
+        table.listing{
+            border:none;
+            background: #fffbf0;
+        }
+        .listing tr:nth-child(1){
+            border-bottom: 1px solid #d4ca74;
+        }
+        tr.a> td:nth-child(1),
+        tr.b> td:nth-child(1),
+        tr.c> td:nth-child(1),
+        tr.d> td:nth-child(1),
+        tr.e> td:nth-child(1),
+        tr.f> td:nth-child(1){
+            text-align: left;
+        }
+        tr.a td:nth-child(2){
+            font-size: 26px;
+            color:#2196f3;
+        }
+        tr.b td:nth-child(3){
+            font-size: 26px;
+            color: #ff9800;
+        }
+        tr.c td:nth-child(4){
+            font-size: 26px;
+            color: #4CAF50;
+        }
+        tr.d td:nth-child(5){
+            font-size: 26px;
+            color: #673AB7;
+        }
+        tr.e td:nth-child(6){
+            font-size: 26px;
+            color: #607D8B;
+        }
+        tr.f td:nth-child(7){
+            font-size: 26px;
+            color: #FFEB3B;
+        }
+        .listing tbody tr td:nth-child(1){
+            text-align: left;
+            padding-left:15px;
+            width: unset;
+            /* white-space: nowrap; */
+        }
+        .listing tbody tr td{
+            padding-top: 7px;
+            white-space: nowrap !important;
+        }
+        .checkboxes{
+            border:transparent;
+        }
+        .checkboxes td{
+            text-align: left;
+            padding-left: 10px;
+        }
+        .checkboxes tr:nth-child(1){
+            border: transparent;
+            border-left: 14px solid #2196f3;
+        }
+        .checkboxes tr:nth-child(2){
+            border: transparent;
+            border-left: 14px solid #ff9800;
+        }
+        .checkboxes tr:nth-child(3){
+            border: transparent;
+            border-left: 14px solid #4CAF50;
+        }
+        .checkboxes tr:nth-child(4){
+            border: transparent;
+            border-left: 14px solid #673AB7;;
+        }
+        .checkboxes tr:nth-child(5){
+            border: transparent;
+            border-left: 14px solid #607D8B;;
+        }
+        .checkboxes tr:nth-child(6){
+            border: transparent;
+            border-left: 14px solid #FFEB3B;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button
+                    type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target="#myNavbar"
+            >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Airline Analysis</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="index.html">Home</a></li>
+
+
+                <li class="dropdown ">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                    >Delays<span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="delay01.html">Causes of Flight Delays</a></li>
+                        <li><a href="delay02.html">Delays By Year & Month</a></li>
+                        <li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                    >Passenger <span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="geo_region.html">Passenger by Geo Region</a></li>
+                        <li>
+                            <a href="domestic.html">Domestic Airline Passenger</a>
+                        </li>
+                        <li>
+                            <a href="international.html"
+                            >International Airline Passenger</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown active">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                    >Safety <span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="safety.html">Airline Safety</a></li>
+                        <li><a href="safety_level.html">Safety level</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                    >Airline Revenue <span class="caret"></span
+                    ></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="highest.html">Highest Revenue</a></li>
+                        <li><a href="individual.html">Individual Revenue</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="CONCLUSIONS.html">Conclusions</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container text-center">
+    <div class="row content">
+        <div class="col-sm-12 text-left content">
+            <h1 class="text-center heading">
+                Safety Level
+            </h1>
+        </div>
+        <div class="col-md-9">
+            <table width="100%" border="1" class="listing">
+                <tr>
+                    <td>Airline</td>
+                    <td>
+                        <p class="a">A-safety</p>
+                    </td>
+                    <td>
+                        <p class="b">B-safety</p>
+                    </td>
+                    <td>
+                        <p class="c">C-safety</p>
+                    </td>
+                    <td>
+                        <p class="d">D-safety</p>
+                    </td>
+                    <td>
+                        <p class="e">E-safety</p>
+                    </td>
+                    <td>
+                        <p class="f">F-safety</p>
+                    </td>
+                </tr>
+                <tr class="a">
+                    <td>Aer Lingus</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>Avianca</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>Condor</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>COPA</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>Finnair</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>Japan Airlines</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>LAN Airlines</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>TAP - Air Portugal</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="a">
+                    <td>Virgin Atlantic</td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Aer Lingus</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Aerolineas Argentinas</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Aeromexico*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Air Canada</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Alitalia</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>All Nippon Airways</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Austrian Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Avianca</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>British Airways*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Cathay Pacific*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Condor</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>COPA</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>El Al</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Finnair</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Hawaiian Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Iberia</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Japan Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>KLM*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Korean Air</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>LAN Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Lufthansa*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Qantas*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Royal Air Maroc</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Saudi Arabian</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>South African</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Southwest Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Sri Lankan / AirLanka</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>SWISS*</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>TAP - Air Portugal</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Vietnam Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Virgin Atlantic</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="b">
+                    <td>Xiamen Airlines</td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="c">
+                    <td>Air New Zealand*</td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="c">
+                    <td>Philippine Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="c">
+                    <td>TACA</td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="c">
+                    <td>Thai Airways</td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>Air New Zealand*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>Egyptair</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>Garuda Indonesia</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>Pakistan International</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>Philippine Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>TACA</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>Thai Airways</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="d">
+                    <td>US Airways / America West*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Aeroflot*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Air New Zealand*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Alaska Airlines*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Delta / Northwest*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Egyptair</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Ethiopian Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Garuda Indonesia</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Pakistan International</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Philippine Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Singapore Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>TACA</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Thai Airways</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>Turkish Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="e">
+                    <td>US Airways / America West*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                    <td></td>
+                </tr>
+                <tr class="f">
+                    <td>Air France</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>Air India*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>American*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>China Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>Gulf Air</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>Kenya Airways</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>Malaysia Airlines</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>SAS*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>TAM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+                <tr class="f">
+                    <td>United / Continental*</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>◘</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <table border="1" class="checkboxes">
+                <tr>
+                    <td><input type="checkbox" id="a" checked> A-safety</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" id="b" checked> B-safety</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" id="c" checked> C-safety</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" id="d" checked> D-safety</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" id="e" checked> E-safety</td>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" id="f" checked> F-safety</td>
+                </tr>
+                <tr>
+                    <td style="font-size: small">
+                        <p>
+                            The view is broken down by Table Name vs. Airline. The view is
+                            filtered on Table Name, which keeps 6 of 6 members.
+                            Airlines are categorized based on safety level. The level are
+                            created as below.
+                        </p>
+                        <ul>
+                            <li>
+                                A-safety - includes airlines which have no incident, no fatal
+                                accidents and no fatalities.
+                            </li>
+                            <li>
+                                B-safety - includes airlines which have incidents, but no fatal
+                                accidents and no fatalities.
+                            </li>
+                            <li>
+                                C-safety - includes airlines which have fatalities less than 10.
+                            </li>
+                            <li>
+                                D-safety - includes airlines which have fatalities less than 50.
+                            </li>
+                            <li>
+                                E-safety - includes airlines which have fatalities less than 100.
+                            </li>
+                            <li>
+                                F-safety - includes airlines which have fatalities more than 100.
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $('#a').click(function() {
+        if($('#a').prop('checked') == false) {
+            $('.a').hide()
+        }else{
+            $('.a').show()
+        }
+    });
+
+    $('#c').click(function() {
+
+        if($('#c').prop('checked') == false) {
+            $('.c').hide()
+        }else{
+            $('.c').show()
+        }
+    });
+    $('#b').click(function() {
+
+        if($('#b').prop('checked') == false) {
+            $('.b').hide()
+        }else{
+            $('.b').show()
+        }
+    });
+    $('#d').click(function() {
+
+        if($('#d').prop('checked') == false) {
+            $('.d').hide()
+        }else{
+            $('.d').show()
+        }
+    });
+    $('#e').click(function() {
+
+        if($('#e').prop('checked') == false) {
+            $('.e').hide()
+        }else{
+            $('.e').show()
+        }
+    });
+    $('#f').click(function() {
+
+        if($('#f').prop('checked') == false) {
+            $('.f').hide()
+        }else{
+            $('.f').show()
+        }
+    });
+</script>
+</body>
+</html>

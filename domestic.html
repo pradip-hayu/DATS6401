@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#myNavbar"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Airline Analysis</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="index.html">Home</a></li>
+
+
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Delays<span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="delay01.html">Causes of Flight Delays</a></li>
+              <li><a href="delay02.html">Delays By Year & Month</a></li>
+              <li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+            </ul>
+          </li>
+
+
+
+          <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Passenger <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="geo_region.html">Passenger by Geo Region</a></li>
+              <li>
+                <a href="domestic.html">Domestic Airline Passenger</a>
+              </li>
+              <li>
+                <a href="international.html"
+                >International Airline Passenger</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Safety <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="safety.html">Airline Safety</a></li>
+              <li><a href="safety_level.html">Safety level</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Airline Revenue <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="highest.html">Highest Revenue</a></li>
+              <li><a href="individual.html">Individual Revenue</a></li>
+            </ul>
+          </li>
+
+          <li><a href="CONCLUSIONS.html">Conclusions</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="container text-center">
+      <div class="row content">
+        <div class="col-sm-12 text-left content">
+          <h1 class="text-center heading">
+            Domestic Airline Passenger
+          </h1>
+          <div
+            id="chartContainer"
+            style="height: 370px; max-width: 920px; margin: 0px auto;"
+          ></div>
+          <div style="margin-top: 20px;">
+            <p>
+              United Airlines is the most popular domestic airline in terms of total passengers count.
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+  <script>
+    window.onload = function() {
+      var options = {
+        animationEnabled: true,
+        title: {
+//          text: "No of passengers"
+        },
+        axisY: {
+          title: "No of passengers",
+          //		suffix: "%",
+          includeZero: false
+        },
+        axisX: {
+          title: "Domestic Airlines",
+		  interval: 1,
+        },
+        data: [
+          {
+            type: "column",
+            yValueFormatString: "#,##0.0#" % "",
+            dataPoints: [
+                          { label: "ATA Airlines", y : 383773 },
+              { label: "AirTran Airways", y: 2388648 },
+              { label: "Alaska Airlines", y: 19474872 },
+              { label: "American Airlines", y: 47561908 },
+              { label: "Delta Air Lines", y: 42494197 },
+              { label: "Frontier Airlines", y: 6090667 },
+                          { label: "Hawaiian Airlines", y : 3186982 },
+              { label: "Independence Air", y: 63913 },
+              { label: "JetBlue Airways", y: 12156008 },
+                          { label: "Midwest Airlines", y : 450428 },
+              { label: "Northwest Airlines", y: 5551459 },
+              { label: "Republic Airlines", y: 58860 },
+              { label: "Southwest Airlines", y: 35290189 },
+              { label: "Spirit Airlines", y: 70105 },
+                          { label: "Sun Country Airlines", y : 1459438 },
+              { label: "US Airways", y: 17196355 },
+              { label: "United Airlines", y: 122785318 },
+              { label: "United Airlines - Pre 07/01/2013", y: 102271342 },
+              { label: "Virgin America", y: 36992619 }
+            ]
+          }
+        ]
+      };
+      $("#chartContainer").CanvasJSChart(options);
+    };
+  </script>
+</html>

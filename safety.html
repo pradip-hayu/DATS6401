@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type = "text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type = "text/javascript"
+            src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style></style>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#myNavbar"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Airline Analysis</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="index.html">Home</a></li>
+
+
+          <li class="dropdown ">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Delays<span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="delay01.html">Causes of Flight Delays</a></li>
+              <li><a href="delay02.html">Delays By Year & Month</a></li>
+              <li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+            </ul>
+          </li>
+
+
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Passenger <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="geo_region.html">Passenger by Geo Region</a></li>
+              <li>
+                <a href="domestic.html">Domestic Airline Passenger</a>
+              </li>
+              <li>
+                <a href="international.html"
+                >International Airline Passenger</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Safety <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="safety.html">Airline Safety</a></li>
+              <li><a href="safety_level.html">Safety level</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+            >Airline Revenue <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu">
+              <li><a href="highest.html">Highest Revenue</a></li>
+              <li><a href="individual.html">Individual Revenue</a></li>
+            </ul>
+          </li>
+
+          <li><a href="CONCLUSIONS.html">Conclusions</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container">
+      <div class="row content">
+        <div class="col-sm-12 text-left content">
+          <h1 class="text-center heading">
+            Analysis of Airlines Safety
+          </h1>
+        </div>
+        <div class="col-md-12">
+          <div
+            id="chartContainer"
+            style="height: 370px; max-width: 920px; margin: 0px auto;"
+          ></div>
+          <div style="margin-top: 50px;">
+            <p>This stacked column chart illustrates the incidents, fatal accidents, and fatalities of 56 airlines for the year 2000 to 2014. If you hover over each bar, you can see those details of each airline. The longest bar is the Malaysia Airlines with 537 fatalities, 2 fatal accidents and 3 incidents.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 text-left content">
+        <h1 class="text-center heading" style="margin-top: 50px;">
+          Incidents, Fatal Accidents & Fatalities Count of 56 Airlines
+        </h1>
+        <div id ="ScatterSafety_div"  style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+        <div style="margin-top: 50px;">
+          <p>
+            From these scatter-plots, we can clearly see that Delta had the highest number of incidents (24), American airlines had the highest number of fatal incidents (3), and Malaysia airlines had the highest number (537) of fatalities.
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"
+    ></script>
+    <script>
+      window.onload = function() {
+        //Better to construct options first and then pass it as a parameter
+        var options = {
+          animationEnabled: true,
+          title: {
+//            text: "No of accidents"
+              labelAngle: 50,
+          },
+          axisY: {
+
+            title: "Incidents,Fatal Accidents & Fatalities",
+          },
+            axisX: {
+                title: "Airlines",
+				interval:1,
+                labelAngle: -60,
+            },
+          toolTip: {
+            shared: true,
+            reversed: true
+          },
+          data: [
+            {
+              type: "stackedColumn",
+              name: "incidents",
+			  color: "blue",
+              showInLegend: "true",
+              dataPoints: [
+                { y: 0, label: "Aer Lingus" },
+                { y: 6, label: "Aeroflot*" },
+                { y: 1, label: "Aerolineas Argentinas" },
+                { y: 5, label: "Aeromexico*" },
+                { y: 2, label: "Air Canada" },
+                { y: 6, label: "Air France" },
+                { y: 4, label: "Air India*" },
+                { y: 5, label: "Air New Zealand*" },
+                { y: 5, label: "Alaska Airlines*" },
+                { y: 4, label: "Alitalia" },
+                { y: 7, label: "All Nippon Airways" },
+                { y: 17, label: "American*" },
+                { y: 1, label: "Austrian Airlines" },
+                { y: 0, label: "Avianca" },
+                { y: 6, label: "British Airways*" },
+                { y: 2, label: "Cathay Pacific*" },
+                { y: 2, label: "China Airlines" },
+                { y: 0, label: "Condor" },
+                { y: 0, label: "COPA" },
+                { y: 24, label: "Delta / Northwest*" },
+                { y: 4, label: "Egyptair" },
+                { y: 1, label: "El Al" },
+                { y: 5, label: "Ethiopian Airlines" },
+                { y: 0, label: "Finnair" },
+                { y: 4, label: "Garuda Indonesia" },
+                { y: 3, label: "Gulf Air" },
+                { y: 1, label: "Hawaiian Airlines" },
+                { y: 5, label: "Iberia" },
+                { y: 0, label: "Japan Airlines" },
+                { y: 2, label: "Kenya Airways" },
+                { y: 1, label: "KLM*" },
+                { y: 1, label: "Korean Air" },
+                { y: 0, label: "LAN Airlines" },
+                { y: 3, label: "Lufthansa*" },
+                { y: 3, label: "Malaysia Airlines" },
+                { y: 10, label: "Pakistan International" },
+                { y: 2, label: "Philippine Airlines" },
+                { y: 5, label: "Qantas*" },
+                { y: 3, label: "Royal Air Maroc" },
+                { y: 6, label: "SAS*" },
+                { y: 11, label: "Saudi Arabian" },
+                { y: 2, label: "Singapore Airlines" },
+                { y: 1, label: "South African" },
+                { y: 8, label: "Southwest Airlines" },
+                { y: 4, label: "Sri Lankan / AirLanka" },
+                { y: 3, label: "SWISS*" },
+                { y: 1, label: "TACA" },
+                { y: 7, label: "TAM" },
+                { y: 0, label: "TAP - Air Portugal" },
+                { y: 2, label: "Thai Airways" },
+                { y: 8, label: "Turkish Airlines" },
+                { y: 14, label: "United / Continental*" },
+                { y: 11, label: "US Airways / America West*" },
+                { y: 1, label: "Vietnam Airlines" },
+                { y: 0, label: "Virgin Atlantic" },
+                { y: 2, label: "Xiamen Airlines" }
+              ]
+            },
+            {
+              type: "stackedColumn",
+              name: "fatal accidents",
+			  color: "orange",
+              showInLegend: "true",
+              dataPoints: [
+                { y: 0, label: "Aer Lingus" },
+                { y: 1, label: "Aeroflot*" },
+                { y: 0, label: "Aerolineas Argentinas" },
+                { y: 0, label: "Aeromexico*" },
+                { y: 0, label: "Air Canada" },
+                { y: 2, label: "Air France" },
+                { y: 1, label: "Air India*" },
+                { y: 1, label: "Air New Zealand*" },
+                { y: 1, label: "Alaska Airlines*" },
+                { y: 0, label: "Alitalia" },
+                { y: 0, label: "All Nippon Airways" },
+                { y: 3, label: "American*" },
+                { y: 0, label: "Austrian Airlines" },
+                { y: 0, label: "Avianca" },
+                { y: 0, label: "British Airways*" },
+                { y: 0, label: "Cathay Pacific*" },
+                { y: 1, label: "China Airlines" },
+                { y: 0, label: "Condor" },
+                { y: 0, label: "COPA" },
+                { y: 2, label: "Delta / Northwest*" },
+                { y: 1, label: "Egyptair" },
+                { y: 0, label: "El Al" },
+                { y: 2, label: "Ethiopian Airlines" },
+                { y: 0, label: "Finnair" },
+                { y: 2, label: "Garuda Indonesia" },
+                { y: 1, label: "Gulf Air" },
+                { y: 0, label: "Hawaiian Airlines" },
+                { y: 0, label: "Iberia" },
+                { y: 0, label: "Japan Airlines" },
+                { y: 2, label: "Kenya Airways" },
+                { y: 0, label: "KLM*" },
+                { y: 0, label: "Korean Air" },
+                { y: 0, label: "LAN Airlines" },
+                { y: 0, label: "Lufthansa*" },
+                { y: 2, label: "Malaysia Airlines" },
+                { y: 2, label: "Pakistan International" },
+                { y: 1, label: "Philippine Airlines" },
+                { y: 0, label: "Qantas*" },
+                { y: 0, label: "Royal Air Maroc" },
+                { y: 1, label: "SAS*" },
+                { y: 0, label: "Saudi Arabian" },
+                { y: 1, label: "Singapore Airlines" },
+                { y: 0, label: "South African" },
+                { y: 0, label: "Southwest Airlines" },
+                { y: 0, label: "Sri Lankan / AirLanka" },
+                { y: 0, label: "SWISS*" },
+                { y: 1, label: "TACA" },
+                { y: 2, label: "TAM" },
+                { y: 0, label: "TAP - Air Portugal" },
+                { y: 1, label: "Thai Airways" },
+                { y: 2, label: "Turkish Airlines" },
+                { y: 2, label: "United / Continental*" },
+                { y: 2, label: "US Airways / America West*" },
+                { y: 0, label: "Vietnam Airlines" },
+                { y: 0, label: "Virgin Atlantic" },
+                { y: 0, label: "Xiamen Airlines" }
+              ]
+            },
+            {
+              type: "stackedColumn",
+              name: "fatalities",
+			  color: "red",
+              showInLegend: "true",
+              dataPoints: [
+                { y: 0, label: "Aer Lingus" },
+                { y: 88, label: "Aeroflot*" },
+                { y: 0, label: "Aerolineas Argentinas" },
+                { y: 0, label: "Aeromexico*" },
+                { y: 0, label: "Air Canada" },
+                { y: 337, label: "Air France" },
+                { y: 158, label: "Air India*" },
+                { y: 7, label: "Air New Zealand*" },
+                { y: 88, label: "Alaska Airlines*" },
+                { y: 0, label: "Alitalia" },
+                { y: 0, label: "All Nippon Airways" },
+                { y: 416, label: "American*" },
+                { y: 0, label: "Austrian Airlines" },
+                { y: 0, label: "Avianca" },
+                { y: 0, label: "British Airways*" },
+                { y: 0, label: "Cathay Pacific*" },
+                { y: 225, label: "China Airlines" },
+                { y: 0, label: "Condor" },
+                { y: 0, label: "COPA" },
+                { y: 51, label: "Delta / Northwest*" },
+                { y: 14, label: "Egyptair" },
+                { y: 0, label: "El Al" },
+                { y: 92, label: "Ethiopian Airlines" },
+                { y: 0, label: "Finnair" },
+                { y: 22, label: "Garuda Indonesia" },
+                { y: 143, label: "Gulf Air" },
+                { y: 0, label: "Hawaiian Airlines" },
+                { y: 0, label: "Iberia" },
+                { y: 0, label: "Japan Airlines" },
+                { y: 283, label: "Kenya Airways" },
+                { y: 0, label: "KLM*" },
+                { y: 0, label: "Korean Air" },
+                { y: 0, label: "LAN Airlines" },
+                { y: 0, label: "Lufthansa*" },
+                { y: 537, label: "Malaysia Airlines" },
+                { y: 46, label: "Pakistan International" },
+                { y: 1, label: "Philippine Airlines" },
+                { y: 0, label: "Qantas*" },
+                { y: 0, label: "Royal Air Maroc" },
+                { y: 110, label: "SAS*" },
+                { y: 0, label: "Saudi Arabian" },
+                { y: 83, label: "Singapore Airlines" },
+                { y: 0, label: "South African" },
+                { y: 0, label: "Southwest Airlines" },
+                { y: 0, label: "Sri Lankan / AirLanka" },
+                { y: 0, label: "SWISS*" },
+                { y: 3, label: "TACA" },
+                { y: 188, label: "TAM" },
+                { y: 0, label: "TAP - Air Portugal" },
+                { y: 1, label: "Thai Airways" },
+                { y: 84, label: "Turkish Airlines" },
+                { y: 109, label: "United / Continental*" },
+                { y: 23, label: "US Airways / America West*" },
+                { y: 0, label: "Vietnam Airlines" },
+                { y: 0, label: "Virgin Atlantic" },
+                { y: 0, label: "Xiamen Airlines" }
+              ]
+            }
+          ]
+        };
+
+        $("#chartContainer").CanvasJSChart(options);
+      };
+
+
+      //load the google charts
+      google.charts.load('current' ,{'packages' : ['corechart']});
+
+      //load the Callback function that runs when page loads
+      google.charts.setOnLoadCallback(drawAllSheets);
+
+      function drawAllSheets() {
+          drawSheetName('2000-2014','SELECT H,I,J,K',
+              ScatterSafetyResponseHandler);
+      } //drawAllSheets
+
+
+      function drawSheetName(sheetName, query, responseHandler) {
+          var queryString = encodeURIComponent(query);
+          var query = new google.visualization.Query(
+
+              'https://docs.google.com/spreadsheets/d/1hd67sVtDAjJVcOS2e_kxWP2Pm903kTMVOjbyCjgaV7U/gviz/tq?sheet='
+
+              + sheetName + '&headers=1&tq=' + queryString);
+          query.send(responseHandler);
+      } //drawSheetName
+
+      function checkError(response) {
+          if(response.isError()) {
+              alert('Error in query: '+ response.getMessage() +
+                  ' ' + response.getDetailedMessage());
+              return;
+          }
+      }
+      //Function end
+
+
+      //Scatterplot to represent incidents, fatal accidents and fatalities of 56 airlines
+
+      function ScatterSafetyResponseHandler(response) {
+          checkError(response);
+          var data = response.getDataTable();
+          var options = {
+              hAxis: {title: 'Airlines'},
+              vAxis: {title: 'Number of incidents, fatal accidents & fatalities'},
+              colors: ['blue','orange', 'red'],
+              legend: 'none'
+          };
+
+          var chart = new google.visualization.ScatterChart(document.getElementById('ScatterSafety_div'));
+          chart.draw(data, options);
+
+      }// Function end
+
+
+
+    </script>
+  </body>
+</html>

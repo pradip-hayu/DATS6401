@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+	/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script type = "text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type = "text/javascript">
+
+        //load the google charts
+        google.charts.load('current' ,{'packages' : ['corechart']});
+
+        //load the Callback function that runs when page loads
+        google.charts.setOnLoadCallback(drawAllSheets);
+
+        function drawAllSheets() {
+            drawSheetName('causes','SELECT A, N',
+                DelayDonutResponseHandler);
+
+            drawSheetName('status', 'SELECT A, N',
+                StatusBarResponseHandler);
+
+        } //drawAllSheets
+
+
+        function drawSheetName(sheetName, query, responseHandler) {
+            var queryString = encodeURIComponent(query);
+            var query = new google.visualization.Query(
+
+                'https://docs.google.com/spreadsheets/d/15SyG_vKFEiaiwm01tr6OTPkbeckX7oYvBSwIj3vqh5w/gviz/tq?sheet='
+
+                + sheetName + '&headers=1&tq=' + queryString);
+            query.send(responseHandler);
+        } //drawSheetName
+
+        function checkError(response) {
+            if(response.isError()) {
+                alert('Error in query: '+ response.getMessage() +
+                    ' ' + response.getDetailedMessage());
+                return;
+            }
+        }
+        //Function end
+
+        // Donut chart to show the percentage breakdown of the five causes of flight delays based on year data
+        function DelayDonutResponseHandler(response) {
+            checkError(response);
+            var data = response.getDataTable();
+
+            var options = {
+                height : 500,
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(
+                document.getElementById('DelayDonut_div'));
+            chart.draw(data, options);
+        } // Function end
+
+
+        //Bar char to represent Delayed, diverted, cancelled, on time, and total flights by year using the delay_by_year data
+
+        function StatusBarResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+
+            var options = {
+                height: 500,
+                colors: ["#FF6347"],
+                vAxis: {title: 'Status'},
+                hAxis: {title: 'Total Number of Each Status'},
+            };
+
+            var view = new google.visualization.DataView(data);
+
+            view.setColumns([0,1,
+                {
+                    calc: function(dt, row) {
+                        return Math.floor(dt.getFormattedValue(row, 1)) + '';
+                    },
+                    sourceColumn: 1,
+                    type: 'string',
+                    role: 'annotation'
+                }]);
+
+            var chart = new google.visualization.BarChart(
+                document.getElementById('DelayBar_div'));
+            chart.draw(view, options);
+        }// Function end
+
+
+
+
+	</script>
+
+	<link rel="stylesheet" href="styles.css" />
+	<style></style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button
+					type="button"
+					class="navbar-toggle"
+					data-toggle="collapse"
+					data-target="#myNavbar"
+			>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Airline Analysis</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li class=""><a href="index.html">Home</a></li>
+
+
+				<li class="dropdown active">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Delays<span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="delay01.html">Causes of Flight Delays</a></li>
+						<li><a href="delay02.html">Delays By Year & Month</a></li>
+						<li><a href="delay03.html">Delayed vs Diverted vs Cancelled</a></li>
+					</ul>
+				</li>
+
+
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Passenger <span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="geo_region.html">Passenger by Geo Region</a></li>
+						<li>
+							<a href="domestic.html">Domestic Airline Passenger</a>
+						</li>
+						<li>
+							<a href="international.html"
+							>International Airline Passenger</a
+							>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Safety <span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="safety.html">Airline Safety</a></li>
+						<li><a href="safety_level.html">Safety level</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"
+					>Airline Revenue <span class="caret"></span
+					></a>
+					<ul class="dropdown-menu">
+						<li><a href="highest.html">Highest Revenue</a></li>
+						<li><a href="individual.html">Individual Revenue</a></li>
+					</ul>
+				</li>
+
+				<li><a href="CONCLUSIONS.html">Conclusions</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container text-center">
+	<div class="row content">
+		<div class="col-sm-12 text-left content">
+			<h1 class="text-center heading">
+				Causes of Flight Delays
+			</h1>
+			<div
+					id ="DelayDonut_div"  style="height: 370px; max-width: 920px; margin: 0px auto;"
+			></div>
+			<div style="margin-top: 120px;">
+				<p>
+					For the years 2004 to 2015, out of the five causes of flight delays, National Aviation System (NAS refers to a broad set of conditions, such as non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control) was the number one cause followed by Late Aircraft and Carrier. The remaining two causes of flight delays: Weather and Security were comparatively low in number.
+
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="row content">
+		<div class="col-sm-12 text-left content">
+			<h1 class="text-center heading" style="margin-top: 100px;">
+				Various Status of Flights
+			</h1>
+			<div id ="DelayBar_div"  style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+			<div style="margin-top: 120px;">
+				<p>The total number of flights for the years 2004 through 2015 was 49774028. Out of those total flights,
+
+					38629977 were on time which is about 77%.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+
+		
+		
+	
+	
+	
+	
