@@ -11,7 +11,7 @@ Objectives:
 
 (4) Find out the airlines (domestic & international) which are most popular among passengers.
 
-Data Source:
+Data Sources:
 
 (1)The airlines delay data for this project was obtained from the Bureau of Transportation Statistics. This dataset is all about flights in the United States, including information about the number, length, and type of delays. The data is reported for individual months at every major airport for every carrier.https://think.cs.vt.edu/corgis/csv/airlines/airlines.html
 
